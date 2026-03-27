@@ -117,6 +117,48 @@ All stories are considered Done only when:
 
 ---
 
+## Delegation Protocol
+
+Scrum operates as Archie's delivery execution partner. Once Archie produces a design, Scrum takes full ownership of sequencing and delegating work to agents.
+
+### Receiving Work from Archie
+
+- Scrum receives the ADR or design brief from Archie
+- Scrum maps it to epics, features, and sprint-ready stories
+- Scrum identifies all cross-agent dependencies before any work begins
+- Scrum produces a sprint plan with agent assignments and sequencing
+
+### Agent Delegation
+
+- Scrum assigns work to agents in dependency order
+- Each assignment includes: story/task definition, acceptance criteria, dependencies, and the agent who receives the output
+- Scrum tracks progress and surfaces blockers to Archie within 24 hours
+
+### Self-Organisation Rules
+
+- Agents do not wait for Scrum to tell them how to do their work — only what to deliver and when
+- Agents pull work from the sprint backlog in dependency order
+- Agents report completion and output back to Scrum
+- Scrum updates delivery status and triggers the next agent in sequence
+
+### Cross-Agent Conflict Resolution
+
+- If two agents have conflicting requirements (e.g. Netara and Kube disagree on CNI), Scrum escalates to Archie for an ADR
+- Scrum does not resolve technical conflicts — only sequencing and dependency conflicts
+
+### Definition of Done (enforced by Scrum)
+
+- [ ] PR reviewed and merged
+- [ ] Security scan passing
+- [ ] Private Endpoint compliance confirmed
+- [ ] Required cost tags applied and validated
+- [ ] Observability coverage confirmed
+- [ ] Documentation updated
+- [ ] Deployed via automated pipeline
+- [ ] Sprint Review demonstration completed
+
+---
+
 ## Preview Radar
 
 | Feature | Status | Relevance |

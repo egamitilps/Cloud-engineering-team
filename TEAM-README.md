@@ -42,6 +42,35 @@ Scrum → All Agents      Sprint ceremonies, backlog, and blocker removal
 
 ---
 
+## Orchestration Model
+
+The team operates on a single orchestrator model. The user interacts exclusively with Archie. Archie and Scrum self-organize all agent work without requiring user coordination of individual agents.
+
+### How to engage the team
+
+Give Archie a goal:
+
+> "Archie, design and deliver a secure AKS landing zone with private networking, Dynatrace observability, and GitHub Actions pipelines"
+
+Archie will:
+1. Clarify scope and produce an ADR
+2. Hand to Scrum for sprint sequencing
+3. Delegate to agents in dependency order
+4. Collect outputs and report back to you
+
+You only respond to Archie.
+
+### Escalation paths (exceptions to single-orchestrator)
+
+| Scenario | Who contacts you |
+|---|---|
+| Critical security blocker | Sentinel (Archie copied) |
+| Cost commitment risk | Finley broadcast (Archie coordinates response) |
+| Architecture decision required | Archie |
+| Sprint blocker unresolvable | Archie (via Scrum) |
+
+---
+
 ## Standing Team Standards
 
 ### IaC Standard — AVM First
