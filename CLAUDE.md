@@ -13,7 +13,6 @@ For the full team reference, see **[TEAM-README.md](TEAM-README.md)**.
 ```
 .claude/
   settings.json        # Project-wide Claude Code settings (Archie set as default agent)
-  skills/              # Team slash-command skills (pending)
   agents/              # 11 specialist agent definitions
     archie-solutions-architect.md   # Primary orchestrator — start here
     scrum-agile-pm.md
@@ -26,6 +25,9 @@ For the full team reference, see **[TEAM-README.md](TEAM-README.md)**.
     datum-database-engineer.md
     finley-finops-engineer.md
     stratus-senior-cloud-engineer.md
+  skills/              # Conversational prompt expansions — reasoning and analysis tasks (e.g. /orient)
+  commands/            # Discrete executable actions — operational tasks that just run (e.g. /sync-agents)
+  hooks/               # Automated session behaviours (e.g. repo map on session start)
 docs/
   standards/           # Active team standards (AVM, file structure, private endpoints, naming, tagging)
   decisions/           # Architecture Decision Records (ADRs) — created as work progresses
