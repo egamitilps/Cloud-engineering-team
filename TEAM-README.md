@@ -14,17 +14,17 @@ A multi-agent engineering team with expert-level knowledge across all Azure and 
 
 | # | Agent | Role | Primary Domain | File |
 |---|---|---|---|---|
-| 1 | **Terra** | IaC Engineer | Terraform, AVM, OpenTofu, Terragrunt | [terra-iac-engineer.md](terra-iac-engineer.md) |
-| 2 | **Dyno** | Observability Engineer | Dynatrace, Grail, Davis AI, OpenTelemetry | [dyno-observability-engineer.md](dyno-observability-engineer.md) |
-| 3 | **Netara** | Network Engineer | Azure Networking, VNets, Firewall, Private Endpoints | [netara-network-engineer.md](netara-network-engineer.md) |
-| 4 | **Kube** | AKS Engineer | AKS, Helm, KEDA, Cilium, GitOps | [kube-aks-engineer.md](kube-aks-engineer.md) |
-| 5 | **Archie** | Solutions Architect | Azure WAF, CAF, Landing Zones, ADRs | [archie-solutions-architect.md](archie-solutions-architect.md) |
-| 6 | **Stratus** | Senior Cloud Engineer | Azure Governance, Entra ID, Policy, Platform Ops | [stratus-senior-cloud-engineer.md](stratus-senior-cloud-engineer.md) |
-| 7 | **Axiom** | DevOps Engineer | GitHub Actions, CI/CD, GHAS, Supply Chain Security | [axiom-devops-engineer.md](axiom-devops-engineer.md) |
-| 8 | **Sentinel** | Security Engineer | Defender for Cloud, Zero Trust, RBAC, Key Vault | [sentinel-security-engineer.md](sentinel-security-engineer.md) |
-| 9 | **Datum** | Database Engineer | Azure SQL, Cosmos DB, PostgreSQL, Redis | [datum-database-engineer.md](datum-database-engineer.md) |
-| 10 | **Finley** | FinOps Engineer | Cost Management, Savings Plans, Reservations, Rightsizing | [finley-finops-engineer.md](finley-finops-engineer.md) |
-| 11 | **Scrum** | Agile PM / Scrum Master | Scrum, Backlog, Sprint Ceremonies, Dependency Management | [scrum-agile-pm.md](scrum-agile-pm.md) |
+| 1 | **Terra** | IaC Engineer | Terraform, AVM, OpenTofu, Terragrunt | [terra-iac-engineer.md](.claude/agents/terra-iac-engineer.md) |
+| 2 | **Dyno** | Observability Engineer | Dynatrace, Grail, Davis AI, OpenTelemetry | [dyno-observability-engineer.md](.claude/agents/dyno-observability-engineer.md) |
+| 3 | **Netara** | Network Engineer | Azure Networking, VNets, Firewall, Private Endpoints | [netara-network-engineer.md](.claude/agents/netara-network-engineer.md) |
+| 4 | **Kube** | AKS Engineer | AKS, Helm, KEDA, Cilium, GitOps | [kube-aks-engineer.md](.claude/agents/kube-aks-engineer.md) |
+| 5 | **Archie** | Solutions Architect | Azure WAF, CAF, Landing Zones, ADRs | [archie-solutions-architect.md](.claude/agents/archie-solutions-architect.md) |
+| 6 | **Stratus** | Senior Cloud Engineer | Azure Governance, Entra ID, Policy, Platform Ops | [stratus-senior-cloud-engineer.md](.claude/agents/stratus-senior-cloud-engineer.md) |
+| 7 | **Axiom** | DevOps Engineer | GitHub Actions, CI/CD, GHAS, Supply Chain Security | [axiom-devops-engineer.md](.claude/agents/axiom-devops-engineer.md) |
+| 8 | **Sentinel** | Security Engineer | Defender for Cloud, Zero Trust, RBAC, Key Vault | [sentinel-security-engineer.md](.claude/agents/sentinel-security-engineer.md) |
+| 9 | **Datum** | Database Engineer | Azure SQL, Cosmos DB, PostgreSQL, Redis | [datum-database-engineer.md](.claude/agents/datum-database-engineer.md) |
+| 10 | **Finley** | FinOps Engineer | Cost Management, Savings Plans, Reservations, Rightsizing | [finley-finops-engineer.md](.claude/agents/finley-finops-engineer.md) |
+| 11 | **Scrum** | Agile PM / Scrum Master | Scrum, Backlog, Sprint Ceremonies, Dependency Management | [scrum-agile-pm.md](.claude/agents/scrum-agile-pm.md) |
 
 ---
 
