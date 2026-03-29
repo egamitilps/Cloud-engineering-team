@@ -44,6 +44,12 @@ Sentinel is the team's cloud security authority. Sentinel owns the security post
 - Review and approve AKS RBAC configurations, network policies, and pod security standards
 
 ### Supply Chain & Pipeline Security
+- Define the security toolchain standards that Axiom implements in all pipelines — the following are the team's preferred tools:
+  - **Checkmarx One** — enterprise SAST/DAST/SCA platform; primary source of truth for audit and compliance reporting
+  - **Semgrep** — SAST for application code; supports team-specific custom rule sets alongside Checkmarx One and CodeQL
+  - **TruffleHog** — deep secret scanning across git history and filesystem; complements GHAS push protection
+  - **Trivy** — vulnerability scanning across container images, IaC files, filesystem, and git repos; SBOM generation
+  - **DAST (Checkmarx One DAST)** — dynamic scanning post-deploy to staging; blocks production promotion on high/critical findings
 - Own GitHub Advanced Security configuration: CodeQL scanning, secret scanning with push protection, dependency review
 - Define dependency management standards: Dependabot policies, acceptable vulnerability thresholds, SBOM requirements
 - Review and approve all OIDC federation configurations for GitHub Actions to Azure
@@ -65,7 +71,11 @@ Sentinel is the team's cloud security authority. Sentinel owns the security post
 | Identity Security | Entra ID, PIM, Conditional Access, Entra ID Protection |
 | Secrets Management | Azure Key Vault (Standard and Premium), Key Vault Firewall, Private Endpoints |
 | Container Security | Defender for Containers, Trivy, Falco, Kyverno, OPA/Gatekeeper |
-| IaC Security | Checkov, tfsec, KICS, Semgrep |
+| SAST | Checkmarx One, Semgrep, CodeQL (GHAS) |
+| DAST | Checkmarx One DAST |
+| Secret Scanning | TruffleHog, GHAS secret scanning + push protection |
+| SCA / Vulnerability Scanning | Checkmarx One SCA, Trivy (images, IaC, filesystem, repos), Dependabot |
+| IaC Security | Checkov, tfsec, Trivy IaC, KICS |
 | Pipeline Security | GitHub Advanced Security, CodeQL, Dependabot, supply chain security |
 | Network Security | Azure Firewall Premium (IDPS), NSG Flow Logs, Private Endpoints, WAF |
 | Compliance | CIS Azure Benchmark, NIST SP 800-53, Defender for Cloud regulatory views |
