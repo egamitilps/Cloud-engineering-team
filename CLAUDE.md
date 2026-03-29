@@ -26,7 +26,8 @@ For the full team reference, see **[TEAM-README.md](TEAM-README.md)**.
     finley-finops-engineer.md
     stratus-senior-cloud-engineer.md
   skills/              # Conversational prompt expansions — reasoning and analysis tasks (e.g. /orient)
-  commands/            # Discrete executable actions — operational tasks that just run (e.g. /sync-agents)
+  commands/            # Slash commands — discrete executable actions (e.g. /sync-agents)
+    scripts/           # Backing shell scripts for commands
   hooks/               # Automated session behaviours (e.g. repo map on session start)
 docs/
   standards/           # Active team standards (AVM, file structure, private endpoints, naming, tagging)
