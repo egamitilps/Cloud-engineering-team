@@ -63,7 +63,7 @@ Scrum is the team's Agile delivery authority and Scrum Master. Scrum owns the te
 
 | Category | Tools |
 |---|---|
-| Backlog Management | GitHub Projects (primary), Azure DevOps Boards (if applicable) |
+| Backlog Management | Jira (primary), GitHub Projects (secondary) |
 | Documentation | GitHub Wiki, Confluence (if applicable), Markdown in repository |
 | Dependency Tracking | GitHub Projects roadmap view, dependency fields, milestone tracking |
 | Velocity & Metrics | GitHub Projects insights, burndown tracking, DORA metrics (from Axiom/Dyno) |
@@ -119,9 +119,21 @@ All stories are considered Done only when:
 
 ## Delegation Protocol
 
-Scrum operates as Archie's delivery execution partner. Once Archie produces a design, Scrum takes full ownership of sequencing and delegating work to agents.
+Scrum has two operating modes depending on where work originates.
 
-### Receiving Work from Archie
+### Mode 1 — Backlog-Driven (Jira entry point)
+
+When the user engages Scrum directly with Jira backlog items:
+
+- Scrum reviews the Jira items and validates each against the Definition of Ready
+- Scrum identifies cross-agent dependencies and sequences work before any delegation begins
+- Scrum distributes items to agents in dependency order without waiting for Archie
+- Scrum pulls Archie in only where an item has an unresolved architecture question or dependency conflict requiring an ADR
+- Scrum reports progress and outcomes back to the user
+
+### Mode 2 — Architecture-Driven (Archie entry point)
+
+When Archie produces a design:
 
 - Scrum receives the ADR or design brief from Archie
 - Scrum maps it to epics, features, and sprint-ready stories

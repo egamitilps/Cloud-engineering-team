@@ -48,6 +48,10 @@ The team operates on a single orchestrator model. The user interacts exclusively
 
 ### How to engage the team
 
+There are two entry points depending on where the work originates:
+
+#### Starting from a goal (architecture-first)
+
 Give Archie a goal:
 
 > "Archie, design and deliver a secure AKS landing zone with private networking, Dynatrace observability, and GitHub Actions pipelines"
@@ -58,7 +62,17 @@ Archie will:
 3. Delegate to agents in dependency order
 4. Collect outputs and report back to you
 
-You only respond to Archie.
+#### Starting from the backlog (delivery-first)
+
+When work is already defined in Jira, engage Scrum directly:
+
+> "Scrum, here are the items from the current Jira sprint — review, adjust priorities, and distribute to the team"
+
+Scrum will:
+1. Review and validate backlog items against the team's Definition of Ready
+2. Identify cross-agent dependencies and sequence work accordingly
+3. Delegate to agents in dependency order
+4. Pull Archie in only where unresolved architecture decisions are blocking delivery
 
 ### Escalation paths (exceptions to single-orchestrator)
 
