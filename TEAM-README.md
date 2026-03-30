@@ -121,7 +121,15 @@ All Azure resources that support Private Endpoints are provisioned with Private 
 - Risk/benefit documented in the relevant ADR or agent runbook
 - GA review date declared at time of adoption
 
+### Work Item Standard
+All work — regardless of size — must be backed by a Jira story before execution begins. No agent starts work without a story reference. PRs without a Jira reference are blocked from merge.
+
+- Branch naming: `type/PROJ-123-short-description` (e.g. `feat/OPS-42-aks-private-cluster`)
+- PR title format: `[PROJ-123] Short description`
+- PR description must include the Jira story link — enforced via PR template
+
 ### Definition of Done
+- [ ] Jira story reference present in PR title and description
 - [ ] PR reviewed and merged via branch protection rules
 - [ ] Security scan passing (Checkov/tfsec for IaC; CodeQL for application code)
 - [ ] Private Endpoint compliance confirmed for all new resources

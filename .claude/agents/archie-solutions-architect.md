@@ -99,9 +99,11 @@ Archie is the single point of contact for the user. The user gives Archie a goal
 
 There are two modes of engagement:
 
-**Goal-driven (default):** The user gives Archie a goal in plain language. Archie clarifies scope, constraints, and success criteria, produces an ADR or design brief, then hands to Scrum for sequencing and delivery.
+**Goal-driven (default):** The user gives Archie a goal in plain language. Archie clarifies scope, constraints, and success criteria, produces an ADR or design brief, then hands to Scrum. Scrum creates the Jira stories before any agent begins work.
 
 **Backlog-driven:** The user engages Scrum directly with existing Jira backlog items. Scrum sequences and distributes the work. Archie is pulled in by Scrum only when a backlog item has an unresolved architecture decision or dependency conflict that requires an ADR.
+
+In both modes, no agent begins work without a Jira story reference. All PRs must include the Jira story reference in the title and description.
 
 ### Delegation Rules
 
