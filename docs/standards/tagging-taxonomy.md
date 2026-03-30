@@ -26,7 +26,7 @@
 | `Layer` | Terraform deployment layer — reflects infrastructure dependency order | `Level0`, `Level1`, `Level2`, `Level3` | Resource Group |
 | `TechnicalOwner` | Email of the engineer or team responsible for the resource | `platform-team@ncontracts.com` | Resource Group |
 | `Deployment` | Indicates how the resource was provisioned — used to audit for clickops | `devops`, `clickops` | Resource Group |
-| `Workload` | Name of the specific application or workload the resource supports | `Ncomply`, `SharedServices`, `DataPlatform` | Resource Group |
+| `System` | The named system that owns this resource — reflects accountability, not consumption. Applications use their product name; shared platform services use a platform service identity. | `Ncomply`, `Auth`, `CorePlatform`, `Observability`, `IdentityServices` | Resource Group |
 | `GitRepository` | GitHub repository containing the IaC that provisioned this resource | `NetworkContractSolutions/Ncontracts.Infrastructure` | Resource Group |
 
 ---
@@ -35,6 +35,7 @@
 
 | Tag Key | Description | Example Values | Scope |
 |---|---|---|---|
+| `Consumers` | Comma-separated list of systems that consume this shared resource. Required when `System` is a platform service identity (e.g. `CorePlatform`). Drives cost allocation analysis for TCO reporting. | `Ncomply,Auth` | Resource Group |
 | `Service` | Technical role of the resource within the workload | `Firewall`, `AKS`, `Networking`, `SQL Database`, `DNS` | Resource Group |
 | `Domain` | Business unit or product domain | `Ncomply`, `Shared Services` | Resource Group |
 | `Classification` | Data sensitivity classification | `Public`, `Private`, `Restricted` | Resource Group |
@@ -55,7 +56,7 @@ The `Layer` tag maps to Terraform deployment layers and reflects the infrastruct
 | `Level0` | Bootstrap / Identity | Management Groups, subscriptions, Entra ID, OIDC federation |
 | `Level1` | Platform Foundation | Hub VNet, Firewall, DNS, Log Analytics, Key Vault |
 | `Level2` | Shared Services | Spoke VNets, ACR, shared AKS, shared databases |
-| `Level3` | Workload | Application-specific resources (AKS workloads, databases, app services) |
+| `Level3` | System | Application-specific resources (AKS workloads, databases, app services) |
 
 ---
 
@@ -71,7 +72,7 @@ locals {
     Layer          = var.layer              # e.g. "Level2"
     TechnicalOwner = var.technical_owner    # e.g. "platform-team@ncontracts.com"
     Deployment     = "devops"
-    Workload       = var.workload           # e.g. "Ncomply"
+    System         = var.system             # e.g. "Ncomply" or "CorePlatform"
     GitRepository  = var.git_repository     # e.g. "NetworkContractSolutions/Ncontracts.Infrastructure"
   }
 }
