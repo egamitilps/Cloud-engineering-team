@@ -130,6 +130,23 @@ All Azure resources that support Private Endpoints are provisioned with Private 
 
 ---
 
+## Workstation Prerequisites
+
+The following tools must be available on any workstation running Claude Code sessions in this repository:
+
+| Tool | Purpose | Required |
+|---|---|---|
+| **Node.js / npm** (includes `npx`) | SessionStart hook uses `npx repomix` to generate the repo map that orients Archie at session start | Recommended — hook falls back to a `find`-based directory listing if absent, but Archie gets file tree only (no file contents) |
+| **Azure CLI** (`az`) | Authentication, resource management, and pipeline scripts | Required |
+| **Terraform** | IaC provisioning across all workload agents | Required |
+| **kubectl** / **kubelogin** | AKS cluster operations | Required for AKS workstreams |
+| **Helm** | AKS package management | Required for AKS workstreams |
+| **GitHub CLI** (`gh`) | PR management, GitHub Actions interaction | Recommended |
+
+> Node.js LTS is the recommended version. Install from [nodejs.org](https://nodejs.org) or via a version manager such as `nvm` or `fnm`.
+
+---
+
 ## Cross-Team Dependency Sequence (Typical Workload Onboarding)
 
 ```
