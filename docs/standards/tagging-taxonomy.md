@@ -1,14 +1,8 @@
 # Tagging Taxonomy Standard
 
-> **Status:** Pending — formal tagging taxonomy to be defined in collaboration with Finley (FinOps) and Stratus (Governance).
->
-> This document defines the authoritative resource tagging standard for all Azure resources across the Cloud Engineering team estate.
-
----
-
-## Scope
-
-Applies to all Azure resources provisioned via Terraform across all environments (dev, staging, prod) and all subscriptions.
+> **Status:** Active — v0.2 (sourced from `naming-and-tagging-conventions-tracking_v0.2.xlsx`)
+> **Owner:** Finley (FinOps Engineer) + Stratus (Senior Cloud Engineer)
+> **Review Cadence:** Quarterly, or when FinOps cost allocation requirements change
 
 ---
 
@@ -18,33 +12,50 @@ Applies to all Azure resources provisioned via Terraform across all environments
 - All Terraform modules expose a `tags` variable — tags are never hardcoded inside modules
 - Tags are always merged at the root configuration level: `merge(local.common_tags, var.tags)`
 - Untagged resources are flagged immediately by Finley and blocked by Azure Policy where enforcement mode is enabled
-- Tag keys use consistent casing (to be defined — e.g. PascalCase or lowercase-hyphenated)
+- Tag keys use **PascalCase** (e.g. `Environment`, `TechnicalOwner`)
+- Primary scope is **Resource Group** — resources inherit tags from their resource group via Azure Policy
 
 ---
 
-## Required Tags
+## Mandatory Tags
 
-> To be completed when tagging standards are provided.
-
-| Tag Key | Description | Example Value | Required | Enforced by Policy |
-|---|---|---|---|---|
-| TBD | Cost allocation / chargeback | TBD | Yes | TBD |
-| TBD | Owning team or squad | TBD | Yes | TBD |
-| TBD | Workload or application name | TBD | Yes | TBD |
-| TBD | Environment | dev / staging / prod | Yes | TBD |
-| TBD | Criticality tier | low / medium / high / critical | Yes | TBD |
-| TBD | Data classification | public / internal / confidential | TBD | TBD |
-| TBD | Provisioned by | terraform | Yes | TBD |
+| Tag Key | Description | Example Values | Scope |
+|---|---|---|---|
+| `Environment` | Lifecycle stage of the workload | `Prod`, `NonProd`, `Dev`, `UAT` | Resource Group |
+| `Purpose` | Functional role within the platform | `Platform`, `Workload` | Resource Group |
+| `Layer` | Terraform deployment layer — reflects infrastructure dependency order | `Level0`, `Level1`, `Level2`, `Level3` | Resource Group |
+| `TechnicalOwner` | Email of the engineer or team responsible for the resource | `platform-team@ncontracts.com` | Resource Group |
+| `Deployment` | Indicates how the resource was provisioned — used to audit for clickops | `devops`, `clickops` | Resource Group |
+| `Workload` | Name of the specific application or workload the resource supports | `Ncomply`, `SharedServices`, `DataPlatform` | Resource Group |
+| `GitRepository` | GitHub repository containing the IaC that provisioned this resource | `NetworkContractSolutions/Ncontracts.Infrastructure` | Resource Group |
 
 ---
 
 ## Optional Tags
 
-> To be completed when tagging standards are provided.
+| Tag Key | Description | Example Values | Scope |
+|---|---|---|---|
+| `Service` | Technical role of the resource within the workload | `Firewall`, `AKS`, `Networking`, `SQL Database`, `DNS` | Resource Group |
+| `Domain` | Business unit or product domain | `Ncomply`, `Shared Services` | Resource Group |
+| `Classification` | Data sensitivity classification | `Public`, `Private`, `Restricted` | Resource Group |
+| `Criticality` | Business criticality of the workload | `High`, `Medium`, `Low` | Resource Group |
+| `BusinessOwner` | Email of the business owner accountable for the workload | `product-owner@ncontracts.com` | Resource Group |
+| `CostCenter` | Accounting cost centre for chargeback | `{cost-centre-number}` | Resource Group |
+| `MonitorDisable` | Suppresses monitoring alerts on a VM | `true`, `Test`, `Dev`, `Sandbox` | VM |
+| `BackupLevel` | Configures backup policy tier on a VM | `silver-lrs`, `gold-lrs`, `silver-grs`, `gold-grs` | VM |
 
-| Tag Key | Description | Example Value |
+---
+
+## Layer Tag Reference
+
+The `Layer` tag maps to Terraform deployment layers and reflects the infrastructure dependency order:
+
+| Value | Layer | Typical Contents |
 |---|---|---|
-| TBD | | |
+| `Level0` | Bootstrap / Identity | Management Groups, subscriptions, Entra ID, OIDC federation |
+| `Level1` | Platform Foundation | Hub VNet, Firewall, DNS, Log Analytics, Key Vault |
+| `Level2` | Shared Services | Spoke VNets, ACR, shared AKS, shared databases |
+| `Level3` | Workload | Application-specific resources (AKS workloads, databases, app services) |
 
 ---
 
@@ -55,8 +66,13 @@ Applies to all Azure resources provisioned via Terraform across all environments
 
 locals {
   common_tags = {
-    # Required tags applied to all resources
-    # Keys and values defined when standard is provided
+    Environment    = var.environment        # e.g. "Dev"
+    Purpose        = var.purpose            # e.g. "Workload"
+    Layer          = var.layer              # e.g. "Level2"
+    TechnicalOwner = var.technical_owner    # e.g. "platform-team@ncontracts.com"
+    Deployment     = "devops"
+    Workload       = var.workload           # e.g. "Ncomply"
+    GitRepository  = var.git_repository     # e.g. "NetworkContractSolutions/Ncontracts.Infrastructure"
   }
 }
 ```
@@ -74,9 +90,11 @@ module "example" {
 
 ## Azure Policy Enforcement
 
+- Mandatory tags are enforced via **Deny** policy in production management groups
+- Non-production environments use **Audit** mode to allow development velocity without hard blocks
 - Tag compliance is reported via **Azure Resource Graph** queries maintained by Stratus
 - Non-compliant resources are surfaced in Finley's sprint cost reports
-- Policy assignment scope and enforcement mode (Audit vs. Deny) to be defined when taxonomy is finalized
+- `Deployment = "clickops"` resources are flagged in the weekly governance report for remediation or approval
 
 ---
 
@@ -84,9 +102,4 @@ module "example" {
 
 - [Naming Conventions](naming-conventions.md)
 - [Private Endpoint Standard](private-endpoint-standard.md)
-
----
-
-> **Owner:** Finley (FinOps Engineer) + Stratus (Senior Cloud Engineer)
-> **Last Updated:** Pending
-> **Review Cadence:** Quarterly, or when FinOps cost allocation requirements change
+- [AVM Module Standard](avm-module-standard.md)
